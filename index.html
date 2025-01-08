@@ -6,12 +6,16 @@
     <title>Coming Soon</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
     <style>
+      @font-face {
+        font-family: 'cos';
+        src: url('Gollie.ttf'); /* Replace with actual font path */
+      }
       body {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Roboto', 'cos', sans-serif;
         background-color: white;
         color: #C0392B;
         margin: 0;
@@ -22,6 +26,12 @@
       .timer {
         font-size: 2.5rem;
         margin-top: 20px;
+      }
+      .black {
+        color: black;
+      }
+      .red {
+        color: #C0392B;
       }
     </style>
   </head>
@@ -43,7 +53,11 @@
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        timerElement.innerHTML = `${days} : ${hours} : ${minutes} : ${seconds}`;
+        timerElement.innerHTML = 
+          `<span class="black">${days}</span> : ` +
+          `<span class="black">${hours}</span> : ` +
+          `<span class="red">${minutes}</span> : ` +
+          `<span class="red">${seconds}</span>`;
 
         if (distance < 0) {
           clearInterval(timerInterval);
