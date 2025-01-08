@@ -3,35 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator</title>
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="style.css" />
+    <title>Coming Soon</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+      }
+      .timer {
+        font-size: 2rem;
+        margin-top: 20px;
+      }
+    </style>
   </head>
   <body>
-    <div class="calculator">
-      <input type="text" id="display" placeholder="0" disabled />
-      <br />
-      <button class="btn btn-o" onclick="clearDisplay()">C</button>
-      <br>
-      <button class="btn" onclick="displayA('7')">7</button>
-      <button class="btn" onclick="displayA('8')">8</button>
-      <button class="btn" onclick="displayA('9')">9</button>
-      <button class="btn btn-o" onclick="displayA('+')">+</button>
-      <br>
-      <button class="btn" onclick="displayA('4')">4</button>
-      <button class="btn" onclick="displayA('5')">5</button>
-      <button class="btn" onclick="displayA('6')">6</button>
-      <button class="btn btn-o" onclick="displayA('-')">-</button>
-      <br>
-      <button class="btn" onclick="displayA('1')">1</button>
-      <button class="btn" onclick="displayA('2')">2</button>
-      <button class="btn" onclick="displayA('3')">3</button>
-      <button class="btn btn-o" onclick="displayA('*')">*</button>
-      <br>
-      <button class="btn" onclick="displayA('0')">0</button>
-      <button class="btn" onclick="displayA('.')">.</button>
-      <button class="btn equals" onclick="calcResult()">=</button>
-      <button class="btn btn-o" onclick="displayA('/')">/</button>
+    <div class="container">
+      <h1>Coming Soon</h1>
+      <p id="timer" class="timer"></p>
     </div>
+    <script>
+      const targetDate = new Date().getTime() + (3 * 24 * 60 * 60 * 1000); // 3 days from now
+      const timerElement = document.getElementById('timer');
+
+      function updateTimer() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (distance < 0) {
+          clearInterval(timerInterval);
+          timerElement.innerHTML = "EXPIRED";
+        }
+      }
+
+      const timerInterval = setInterval(updateTimer, 1000);
+    </script>
   </body>
 </html>
