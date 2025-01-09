@@ -41,7 +41,15 @@
       <p id="timer" class="timer"></p>
     </div>
     <script>
-      const targetDate = new Date().getTime() + (3 * 24 * 60 * 60 * 1000); // 3 days from now
+      // Check if a target date is already stored in localStorage
+      let targetDate = localStorage.getItem('targetDate');
+
+      // If not, set it to 3 days from now and store it in localStorage
+      if (!targetDate) {
+        targetDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
+        localStorage.setItem('targetDate', targetDate);
+      }
+
       const timerElement = document.getElementById('timer');
 
       function updateTimer() {
