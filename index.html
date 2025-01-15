@@ -20,8 +20,9 @@
         color: #C0392B;
         margin: 0;
       }
-      h1{
+      h1 {
         font-size: 100px;
+        animation: changeText 6s infinite;
       }
       .container {
         text-align: center;
@@ -36,11 +37,34 @@
       .red {
         color: #C0392B;
       }
+      @keyframes changeText {
+        0%, 33% {
+          content: "COMING SOON";
+        }
+        34%, 66% {
+          content: "GAMES ARE COMING";
+        }
+        67%, 100% {
+          content: "COSTUV";
+        }
+      }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1>COMING SOON</h1>
+      <h1 id="animatedText">COMING SOON</h1>
     </div>
+    <script>
+      const texts = ["COMING SOON", "GAMES ARE COMING", "COSTUV"];
+      let index = 0;
+      const animatedText = document.getElementById("animatedText");
+
+      function changeText() {
+        animatedText.textContent = texts[index];
+        index = (index + 1) % texts.length;
+      }
+
+      setInterval(changeText, 2000);
+    </script>
   </body>
 </html>
