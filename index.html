@@ -22,7 +22,6 @@
       }
       h1 {
         font-size: 60px;
-        animation: changeText 6s infinite;
       }
       .container {
         text-align: center;
@@ -37,22 +36,25 @@
       .red {
         color: #C0392B;
       }
-      @keyframes changeText {
-        0%, 33% {
-          content: "COMING SOON";
+      .fade {
+        animation: fadeInOut 6s infinite;
+      }
+      @keyframes fadeInOut {
+        0%, 20% {
+          opacity: 1;
         }
-        34%, 66% {
-          content: "GAMES ARE COMING";
+        40%, 60% {
+          opacity: 0;
         }
-        67%, 100% {
-          content: "COSTUV";
+        80%, 100% {
+          opacity: 1;
         }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <h1 id="animatedText">COMING SOON</h1>
+      <h1 id="animatedText" class="fade">COMING SOON</h1>
     </div>
     <script>
       const texts = ["COMING SOON", "GAMES ARE COMING", "COSTUV"];
@@ -60,11 +62,15 @@
       const animatedText = document.getElementById("animatedText");
 
       function changeText() {
-        animatedText.textContent = texts[index];
-        index = (index + 1) % texts.length;
+        animatedText.style.opacity = 0;
+        setTimeout(() => {
+          animatedText.textContent = texts[index];
+          animatedText.style.opacity = 1;
+          index = (index + 1) % texts.length;
+        }, 2000);
       }
 
-      setInterval(changeText, 2000);
+      setInterval(changeText, 6000);
     </script>
   </body>
 </html>
